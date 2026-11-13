@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楊承翰 - 個人網站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royale-blue: #3A68E3;
+            --royale-gold: #F2C12E;
+            --wood-dark: #5C3A21;
+            --wood-light: #8B5A33;
+            --text-light: #FFFFFF;
+            --bg-dark: #1E293B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(58, 104, 227, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(242, 193, 46, 0.15) 0%, transparent 40%);
+        }
+
+        /* ----- 首頁區塊 ----- */
+        #home {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 8px solid var(--wood-dark);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            /* 模擬遊戲標題字效 */
+            text-shadow: 
+                -3px -3px 0 #000,
+                3px -3px 0 #000,
+                -3px 3px 0 #000,
+                3px 3px 0 #000,
+                0px 6px 0px #000,
+                0px 8px 15px rgba(0,0,0,0.6);
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .know-me-tag {
+            display: inline-block;
+            background: linear-gradient(180deg, #F9D423 0%, #FF4E50 100%);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 900;
+            padding: 8px 25px;
+            border-radius: 5px;
+            margin-bottom: 40px;
+            border: 3px solid #000;
+            box-shadow: 0 4px 0 #000;
+            transform: rotate(-3deg);
+        }
+
+        .btn-view-tags {
+            background: linear-gradient(180deg, #4A88FF 0%, var(--royale-blue) 100%);
+            color: var(--text-light);
+            border: 3px solid #000;
+            padding: 15px 45px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 0 6px 0 #000, 0 10px 20px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+        }
+
+        .btn-view-tags:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 #000;
+        }
+
+        /* 躍動動畫 */
+        @keyframes hogJump {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        .hog-jump-anim {
+            animation: hogJump 0.5s ease-in-out;
+        }
+
+        /* ----- 關於我區塊 ----- */
+        #about {
+            padding: 100px 10%;
+            background-color: var(--bg-dark);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--royale-gold);
+            margin-bottom: 60px;
+            text-align: center;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 5px 0 #000;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 照片放置區 (木頭框架) */
+        .photo-wrapper {
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            position: relative;
+            background: var(--wood-light);
+            border: 4px solid #000;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 10px 0 #000;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #2C3E50;
+            border: 4px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--royale-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+            background: linear-gradient(180deg, #3A4B6B 0%, #2A364F 100%);
+            border: 4px solid #000;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 0 #000;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #E2E8F0;
+            font-weight: 700;
+        }
+
+        /* 標籤區 */
+        .hobbies {
+            margin-top: 40px;
+        }
+        
+        .hobbies h3 {
+            font-size: 1.5rem;
+            color: var(--royale-gold);
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .hobby-tag {
+            background: linear-gradient(180deg, #F2C12E 0%, #D49A1C 100%);
+            color: #000;
+            border: 3px solid #000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 0 #000;
+        }
+
+        .hobby-tag.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .hobby-tag:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: linear-gradient(180deg, #FFE066 0%, #F2C12E 100%);
+            cursor: pointer;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 3.5rem; }
+            .btn-view-tags { font-size: 1.2rem; }
+            .about-container { flex-direction: column; text-align: center; }
+            .tags-container { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="title">楊承翰</h1>
+            <div class="know-me-tag"># 認識我</div>
+            <br>
+            <button class="btn-view-tags" id="hog-btn" onclick="scrollToTags()">
+                查看標籤 🐗🔨
+            </button>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">ABOUT ME</h2>
+        <div class="about-container">
+            <div class="photo-wrapper">
+                <div class="photo-placeholder">
+                    [ 我的照片 ]
+                </div>
+            </div>
+            
+            <div class="about-text">
+                <p>你好！我是<strong>楊承翰</strong>。就像野豬騎士一樣，我喜歡勇往直前、跳躍障礙，並以最快的速度達成目標！</p>
+                <p>在日常與專業領域中，我重視策略、時機與團隊配合。點擊上方按鈕，看看我的專屬戰鬥標籤！</p>
+                
+                <div class="hobbies">
+                    <h3>我的戰鬥標籤</h3>
+                    <div class="tags-container" id="tags-container">
+                        <span class="hobby-tag">🐗 勇往直前</span>
+                        <span class="hobby-tag">🔨 敲擊程式碼</span>
+                        <span class="hobby-tag">⚔️ 策略規劃</span>
+                        <span class="hobby-tag">👑 追求卓越</span>
+                        <span class="hobby-tag">🛡️ 堅實後盾</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToTags() {
+            const btn = document.getElementById('hog-btn');
+            btn.classList.remove('hog-jump-anim');
+            void btn.offsetWidth;
+            btn.classList.add('hog-jump-anim');
+
+            setTimeout(() => {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                
+                const tags = document.querySelectorAll('.hobby-tag');
+                tags.forEach((tag, index) => {
+                    setTimeout(() => {
+                        tag.classList.add('show');
+                    }, 400 + (index * 150)); 
+                });
+            }, 300);
+        }
+    </script>
+</body>
+</html>
